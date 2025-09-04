@@ -29,7 +29,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     // GraphQL setup
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: false,
+      autoSchemaFile: 'src/schema.gql',
+      introspection: true,
+      csrfPrevention: false,
+      playground: true,
     }),
 
     ShipmentsModule,

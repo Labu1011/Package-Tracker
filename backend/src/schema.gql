@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Shipment {
+  id: Int!
+  trackingId: String!
+  status: ShipmentStatus!
+  checkpoints: [String!]
+  sender: String!
+  receiver: String!
+}
+
+"""Status of a shipment."""
+enum ShipmentStatus {
+  PENDING
+  PROCESSING
+  PICKED_UP
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+type Query {
+  shipments: [Shipment!]!
+  shipment(id: Int!): Shipment!
+}
+
+type Mutation {
+  createShipment(input: CreateShipmentDto!): Shipment!
+}
+
+input CreateShipmentDto {
+  sender: String!
+  receiver: String!
+  status: ShipmentStatus! = PENDING
+  checkpoints: [String!]
+}
